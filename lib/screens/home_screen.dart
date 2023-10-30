@@ -134,45 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     ),
-      /*bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-           setState(() {
-            currentPageIndex = index;
-           }
-          );
-        },
-        indicatorColor: Colors.amber[800],
-        selectedIndex: currentPageIndex,
-        backgroundColor: Colors.deepPurple.shade300,
-        elevation: 10,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-
-          NavigationDestination(
-            selectedIcon: Icon(Icons.shopping_cart),
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Cart',
-          ),
-
-          NavigationDestination(
-            selectedIcon: Icon(Icons.favorite),
-            icon: Icon(Icons.favorite_border_outlined),
-            label: 'Liked',
-          ),
-
-          NavigationDestination(
-            selectedIcon: Icon(Icons.person),
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Account',
-          ),
-        ],
-      ),*/
-
-
-              );
+                 );
   }
 }
