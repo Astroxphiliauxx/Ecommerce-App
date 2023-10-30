@@ -1,4 +1,5 @@
 import 'package:ecommerce/login.dart';
+import 'package:ecommerce/screens/bottom_navigation_bar.dart';
 import 'package:ecommerce/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
@@ -26,7 +27,7 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
             color: Colors.white),
         ),
 
-          HomeScreen()
+        BottomNavigationBar1(),
       ),
       ScreenHiddenDrawer(
           ItemHiddenMenu(
@@ -62,6 +63,7 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
 
       loginPage()
     ),
+
     ];
   }
   Widget build(BuildContext context) {
@@ -69,6 +71,15 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
         screens: _pages,
         backgroundColorMenu: Colors.deepPurple.shade200,
         initPositionSelected: 0 ,
+      slidePercent: 35,
+      elevationAppBar: 5,
+      typeOpen: TypeOpen.FROM_LEFT,
+      disableAppBarDefault: false,
+      withAutoTittleName: false,
+      contentCornerRadius: 30,
+      isTitleCentered: false,
+      tittleAppBar:   Text("Shop N Shop")
     );
+
   }
 }

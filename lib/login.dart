@@ -1,9 +1,9 @@
 import 'package:ecommerce/screens/hidden_drawer.dart';
-import 'package:ecommerce/screens/home_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
-import 'login.dart';
+
 
 class loginPage extends StatelessWidget {
   const loginPage({super.key});
@@ -11,56 +11,60 @@ class loginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.grey,
-      body: SafeArea(
-        child: Center(
+      backgroundColor: Colors.deepPurple.shade100,
+      body:/* SafeArea(
+        child: */Center(
           child: SingleChildScrollView(
            child: Column(
              children: [
                Container(
-                 alignment: Alignment.topRight,
-                 child: Padding(
-                   padding: EdgeInsets.only(right: 10),
-                   child: TextButton(
-                     child: Text("Skip Login",
-                       style: TextStyle(
-                         color: Colors.black54,
-                         decoration: TextDecoration.underline,
-                         decorationStyle: TextDecorationStyle.double,
-
+                 height: 200,
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                     Container(
+                       alignment: Alignment.centerLeft,
+                       height: 200,
+                       width: 300,
+                       child: Padding(
+                         padding: EdgeInsets.only(left: 100),
+                         child: Lottie.asset("images/anima1.json"),
                        ),
                      ),
-                     onPressed: (){
-                       Navigator.push(context,
-                           MaterialPageRoute(
-                               builder: (context) =>
-                                   HiddenDrawer() ));
-
-                     },
-                   ),
-
+                     Container(
+                       alignment: Alignment.topRight,
+                       child: Padding(
+                         padding: EdgeInsets.only(right: 10),
+                         child: TextButton(
+                           child: Text("Skip Login",
+                             style: TextStyle(
+                                 color: Colors.black,
+                                 decoration: TextDecoration.underline,
+                                 decorationStyle: TextDecorationStyle.double,
+                                 fontWeight: FontWeight.bold
+                             ),
+                           ),
+                         onPressed: (){
+                             Navigator.push(context,
+                                 MaterialPageRoute(
+                                     builder: (context) => HiddenDrawer() ));
+                           },
+                         ),
+                       ),
+                     ),
+                   ],
                  ),
                ),
-               Container(
-                 height: 300,
-                 width: 500,
-                 child: Padding(
-                     padding: EdgeInsets.all(10),
-                   child: Lottie.asset("images/anima1.json"),
-                  ),
-               ),
 
-
-               SizedBox(height: 100),
                Animate(
                  effects:
                    [FadeEffect(delay:800.ms),SlideEffect(duration: 1000.ms)],
-                 child: Text("Welcome to the Login Page",
+                 child: Text("Welcome to the Login Page !",
                      style: TextStyle(fontSize: 20,
-
                      )
                  ) ,
                ),
+
                SizedBox(height: 80),
                Padding(
                  padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -104,9 +108,9 @@ class loginPage extends StatelessWidget {
                      children:  [
                      TextButton(
                          child: Text("Forgot Password?",
-                   style: TextStyle(
-                     color: Colors.black87,
-                   ),
+                          style: TextStyle(
+                          color: Colors.black87,
+                          ),
                        ),
                        onPressed: (){
                            ScaffoldMessenger.of(context).showSnackBar(
@@ -118,29 +122,34 @@ class loginPage extends StatelessWidget {
                    ],
                  ),
                ),
-               Center(
-                 child: TextButton(
-                   child: Text("Sign In",
-                     style: TextStyle(
-                       color: Colors.white,
-                     ),
-                   ),
-                   onPressed: (){
-                     ScaffoldMessenger.of(context).showSnackBar(
-                       SnackBar(content: Text("Under Modification, Apologies !"),
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Center(
+                     child: TextButton(
+                       child: Text("Sign In",
+                         style: TextStyle(
+                           fontSize: 18,
+                           color: Colors.white,
+                         ),
                        ),
-                     );
-                   },
-                   style: ButtonStyle(
-                     backgroundColor: MaterialStateProperty.all<Color>(Colors.black54),
-                 ),
-               ),
-               ),
+                       onPressed: (){
+                         ScaffoldMessenger.of(context).showSnackBar(
+                           SnackBar(content: Text("Under Modification, Apologies !"),
+                           ),
+                         );
+                       },
+                       style: TextButton.styleFrom(
+                         fixedSize: Size(450,  50),
+                         backgroundColor: Colors.black54,
+                       ),
+                   ),
+                   ),
+                ),
             ],
            )
         ),
       ),
-      ),
+     // ),
     );
   }
 }

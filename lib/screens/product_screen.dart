@@ -11,10 +11,12 @@ class productScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
      body: SafeArea(
-       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+       child:
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
          Container(
           alignment: Alignment.topCenter,
           height: MediaQuery.of(context).size.height/1.6,
@@ -74,7 +76,6 @@ class productScreen extends StatelessWidget {
                           ),
                         )
                       ],
-
                     ),
                   ),
                   SizedBox(height: 20),
@@ -84,9 +85,6 @@ class productScreen extends StatelessWidget {
                           fontSize: 16
                           ),
                         ),
-
-
-
                   SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -95,7 +93,6 @@ class productScreen extends StatelessWidget {
                         message: "Go To Cart",
                         child: InkWell(
                           onTap: (){
-
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -119,32 +116,24 @@ class productScreen extends StatelessWidget {
                             );
                           },
                           child: Container(
-
                             padding: EdgeInsets.symmetric(vertical: 20,horizontal: 60),
                             decoration: BoxDecoration(
                                 color: Colors.amber[800],
                                 borderRadius: BorderRadius.circular(30),
-
                             ),
                             child: Text("Buy Now",
                               style: TextStyle(
                                 color: Colors.white,
                               ),
-
                             ),
                           ),
                           ),
                       ),
-  ]
-
-
+                  ]
                   ),
-  ]
-
+                ]
               ),
-
               )
-
         ],
        ),
      ),

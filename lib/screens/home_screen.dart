@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                          children: [
                            Container(
-                             width: MediaQuery.of(context).size.width/1.4,        //search bar is now 1.5 times reduced
+                             width: MediaQuery.of(context).size.width/1.1,        //search bar is now 1.5 times reduced
                              decoration: BoxDecoration(
                                color: Colors.white,
                                borderRadius: BorderRadius.circular(10),
@@ -61,37 +61,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                  border: InputBorder.none,
                                  prefixIcon: Icon(
                                    Icons.search,
-                                   size: 30,
+                                   size: 35,
                                    color: Colors.grey,
                                  )
                                ),
                              ),
                            ),
-                           Container(
-                             alignment: Alignment.centerLeft,
-                             height: 10,
-                             width: 10,
-
-                           )
-
                   ],
                ),
             ),
                    Container(
-                     margin: EdgeInsets.only(right: 20, top: 60),
+                     margin: EdgeInsets.only( top: 20,right: 15),
                      alignment: Alignment.center,
                      child: ClipRRect(
                        borderRadius: BorderRadius.circular(15),
                        child: Image.asset("images/deal poster.jpg",
-                         fit: BoxFit.contain,
-                         width: MediaQuery.of(context).size.width/1,
+                         fit: BoxFit.fill,
+                         width: MediaQuery.of(context).size.width,
                        ),
                      ),
                    ),
                    SingleChildScrollView(
                      scrollDirection: Axis.horizontal,
                      child: Padding(
-                       padding: EdgeInsets.only(top: 55),
+                       padding: EdgeInsets.only(top: 20),
                        child: Row(
                           children: [
                            for(int i =0; i<catList.length;i++)
@@ -122,42 +115,31 @@ class _HomeScreenState extends State<HomeScreen> {
                        ),
                      ),
                    ),
-                   SizedBox(height: 30),
+                   SizedBox(height: 20),
                    GridView.builder(
                      physics: NeverScrollableScrollPhysics(),
                        shrinkWrap: true,
                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                          crossAxisCount: 2,
                          childAspectRatio: (MediaQuery.of(context).size.width - 30 -15)/(2*290),
-                         mainAxisSpacing: 35,
+                         mainAxisSpacing: 20,
                          crossAxisSpacing: 15,
                    ),
                        itemCount: imgList.length,
-                       itemBuilder: (_,i){
-                       if (i%2==0){
-                         return productCard(imgList[i]);
-                      }
-                       return OverflowBox(
-                         maxHeight: 290 +150,
-                         child: Container(
-                           margin: EdgeInsets.only(top: 70),
-                           child: productCard(imgList[i]),
-                         ),
-                       );
-                       }
+                       itemBuilder: (_,i) {
+                       return productCard(imgList[i]);
+                     }
                    )
 ]          ),
         ),
       ),
     ),
-      bottomNavigationBar:
-
-      NavigationBar(
-
+      /*bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
-          setState(() {
+           setState(() {
             currentPageIndex = index;
-          });
+           }
+          );
         },
         indicatorColor: Colors.amber[800],
         selectedIndex: currentPageIndex,
@@ -169,22 +151,28 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
+
           NavigationDestination(
+            selectedIcon: Icon(Icons.shopping_cart),
             icon: Icon(Icons.shopping_cart_outlined),
             label: 'Cart',
           ),
+
           NavigationDestination(
             selectedIcon: Icon(Icons.favorite),
             icon: Icon(Icons.favorite_border_outlined),
             label: 'Liked',
           ),
+
           NavigationDestination(
             selectedIcon: Icon(Icons.person),
             icon: Icon(Icons.person_2_outlined),
             label: 'Account',
           ),
         ],
-      ),
+      ),*/
+
+
               );
   }
 }

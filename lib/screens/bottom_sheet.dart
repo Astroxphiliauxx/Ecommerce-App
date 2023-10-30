@@ -34,7 +34,6 @@ class CustomBottomSheet extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(10)
             ),
-
           ),
           SizedBox(height: 10),
           Row(
@@ -46,7 +45,6 @@ class CustomBottomSheet extends StatelessWidget {
                 fontSize: 17,
               ),
               ),
-
             ],
           ),
           SizedBox(height: 20),
@@ -59,7 +57,6 @@ class CustomBottomSheet extends StatelessWidget {
           )
         ],
       ),
-
     );
   }
 }
