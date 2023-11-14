@@ -1,19 +1,35 @@
+import 'package:ecommerce/screens/auth.dart';
 import 'package:ecommerce/screens/hidden_drawer.dart';
+import 'package:ecommerce/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
-
-class loginPage extends StatelessWidget {
+class loginPage extends StatefulWidget {
   const loginPage({super.key});
 
   @override
+  State<loginPage> createState() => _loginPageState();
+}
+
+class _loginPageState extends State<loginPage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  @override
+
+  void dispose(){
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: Colors.deepPurple.shade100,
-      body:/* SafeArea(
-        child: */Center(
+      body:
+        Center(
           child: SingleChildScrollView(
            child: Column(
              children: [
@@ -31,27 +47,7 @@ class loginPage extends StatelessWidget {
                          child: Lottie.asset("images/anima1.json"),
                        ),
                      ),
-                     Container(
-                       alignment: Alignment.topRight,
-                       child: Padding(
-                         padding: EdgeInsets.only(right: 10),
-                         child: TextButton(
-                           child: Text("Skip Login",
-                             style: TextStyle(
-                                 color: Colors.black,
-                                 decoration: TextDecoration.underline,
-                                 decorationStyle: TextDecorationStyle.double,
-                                 fontWeight: FontWeight.bold
-                             ),
-                           ),
-                         onPressed: (){
-                             Navigator.push(context,
-                                 MaterialPageRoute(
-                                     builder: (context) => HiddenDrawer() ));
-                           },
-                         ),
-                       ),
-                     ),
+
                    ],
                  ),
                ),
@@ -68,25 +64,39 @@ class loginPage extends StatelessWidget {
                SizedBox(height: 80),
                Padding(
                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                 child: TextField(decoration: InputDecoration(
-                 hintText: 'Username',
-                 enabledBorder: OutlineInputBorder(
-                 borderSide:
-                     BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                       BorderSide(color: Colors.grey),
-                  ),
-                  fillColor: Colors.white70,
-                  filled: true,
+                 child: Form(
+
+                   child: TextFormField(decoration: InputDecoration(
+                   hintText: 'Gmail',
+                   enabledBorder: OutlineInputBorder(
+                   borderSide:
+                       BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                         BorderSide(color: Colors.grey),
+                    ),
+                    fillColor: Colors.white70,
+                    filled: true,
                 ),
+                     autocorrect: false,
+                     textCapitalization: TextCapitalization.none,
+                     keyboardType: TextInputType.emailAddress,
+                     controller: _emailController,
+                     validator: (value) {
+                     if (value == null || value.trim().isEmpty || !value.contains("@gmail.com")){
+                       return 'Please enter a valid Gmail address';
+                     }
+                     return null;
+                     },
+
                 ),
+                 ),
               ),
               SizedBox(height: 20),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: TextField(decoration: InputDecoration(
+                child: TextFormField(decoration: InputDecoration(
                   hintText: 'Password',
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -100,7 +110,16 @@ class loginPage extends StatelessWidget {
                   filled: true,
                 ),
                   obscureText: true,
-                ),
+                  controller: _passwordController,
+                  validator: (value) {
+                  if (value == null || value.length <6){
+                    return 'Password should contain least 7 letters';
+                  }
+                  return null;
+                },
+
+
+               ),
               ),
                Padding(
                  padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -126,17 +145,15 @@ class loginPage extends StatelessWidget {
                   padding: EdgeInsets.all(20.0),
                   child: Center(
                      child: TextButton(
-                       child: Text("Sign In",
+                       child: Text( "Login ",
                          style: TextStyle(
                            fontSize: 18,
                            color: Colors.white,
                          ),
                        ),
                        onPressed: (){
-                         ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(content: Text("Under Modification, Apologies !"),
-                           ),
-                         );
+                         _SignIn();
+
                        },
                        style: TextButton.styleFrom(
                          fixedSize: Size(450,  50),
@@ -145,12 +162,44 @@ class loginPage extends StatelessWidget {
                    ),
                    ),
                 ),
+               Padding(
+                 padding: EdgeInsets.all(20.0),
+                 child: Center(
+                   child: TextButton(
+                     child: Text( "New User?   Create An Account" ,
+                       style: TextStyle(
+                         fontSize: 20,
+                         fontWeight: FontWeight.bold,
+                         color: Colors.black,
+                       ),
+                     ),
+                     onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+
+                     },
+
+                   ),
+                 ),
+               ),
             ],
            )
         ),
       ),
      // ),
     );
+  }
+  void _SignIn() async{
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    if (user != null){
+      print('user is successfully signedIn');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HiddenDrawer()));
+    }
+    else {
+      print('some error happened');
+    }
   }
 }
 

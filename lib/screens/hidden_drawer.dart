@@ -1,6 +1,8 @@
 import 'package:ecommerce/login.dart';
 import 'package:ecommerce/screens/bottom_navigation_bar.dart';
 import 'package:ecommerce/screens/home_screen.dart';
+import 'package:ecommerce/screens/signout.dart';
+import 'package:ecommerce/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 
@@ -22,7 +24,7 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
         name: "Home ",
         baseStyle: TextStyle(fontSize: 20
         ),
-        selectedStyle: TextStyle(fontSize: 26,
+        selectedStyle: TextStyle(fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white),
         ),
@@ -33,7 +35,7 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
           ItemHiddenMenu(
             name: "Settings",
             baseStyle: TextStyle(fontSize: 20),
-            selectedStyle: TextStyle(fontSize: 26,
+            selectedStyle: TextStyle(fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -44,7 +46,7 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
           ItemHiddenMenu(
             name: "Log In",
             baseStyle: TextStyle(fontSize: 20),
-            selectedStyle: TextStyle(fontSize: 26,
+            selectedStyle: TextStyle(fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white
             ),
@@ -54,15 +56,26 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
       ),
     ScreenHiddenDrawer(
         ItemHiddenMenu(
-           name: "SignOut",
+           name: "SignUp",
             baseStyle: TextStyle(fontSize: 20),
-           selectedStyle: TextStyle(fontSize: 26,
+           selectedStyle: TextStyle(fontSize: 20,
                fontWeight: FontWeight.bold,
                color: Colors.white),
          ),
 
-      loginPage()
+     SignUp()
     ),
+      ScreenHiddenDrawer(
+          ItemHiddenMenu(
+            name: "SignOut",
+            baseStyle: TextStyle(fontSize: 20),
+            selectedStyle: TextStyle(fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+          ),
+
+          signOut()
+      ),
 
     ];
   }

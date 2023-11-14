@@ -3,9 +3,10 @@
 import 'package:ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:ecommerce/stateful.dart';
 
-
-import '../login.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
+  int myCurrentIndex= 0;
   List catList= [
     "All",
     "Best Selling",
@@ -29,14 +31,21 @@ class _HomeScreenState extends State<HomeScreen> {
     "Black Pant",
     "Ladies Bag"
   ];
+  final myitems = [
+  Image.asset("images/deal poster.jpg"),
+    Image.asset("images/deal poster 1.jpg"),
+    Image.asset("images/deal poster 2.jpg"),
+    Image.asset("images/deal poster 3.jpg"),
+    Image.asset("images/deal poster 4.jpg")
+  ];
   @override
   Widget build(BuildContext context){
 
     return Scaffold(
-
-
-      backgroundColor: Colors.deepPurple.shade100,
+          backgroundColor: Colors.deepPurple.shade100,
       body: SingleChildScrollView(
+
+
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(top: 20, left: 15),
@@ -67,20 +76,46 @@ class _HomeScreenState extends State<HomeScreen> {
                                ),
                              ),
                            ),
-                  ],
+          ]
                ),
             ),
-                   Container(
-                     margin: EdgeInsets.only( top: 20,right: 15),
-                     alignment: Alignment.center,
-                     child: ClipRRect(
-                       borderRadius: BorderRadius.circular(15),
-                       child: Image.asset("images/deal poster.jpg",
-                         fit: BoxFit.fill,
-                         width: MediaQuery.of(context).size.width,
-                       ),
+                   SizedBox(height: 20),
+                   SingleChildScrollView(
+                     child: Column(
+                       children: [
+                         CarouselSlider(
+                             options: CarouselOptions(
+                                autoPlay: true,
+                                height: 120,
+                                autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                autoPlayInterval: Duration(seconds: 3),
+                                enlargeCenterPage: true,
+                                aspectRatio: 2  ,
+                                onPageChanged: (index, reason) {
+                                  setState(() {
+                                    myCurrentIndex = index;
+                                  });
+                               }
+                         ),
+                           items: myitems,
+                         ),
+                         AnimatedSmoothIndicator(
+                             activeIndex: myCurrentIndex,
+                             count: myitems.length,
+                           effect: WormEffect(
+                             dotHeight: 8,
+                             dotWidth: 8,
+                             spacing: 10,
+                             paintStyle: PaintingStyle.fill,
+                             activeDotColor: Colors.black54,
+                             dotColor: Colors.white
+                           ),
+                              )
+                       ],
                      ),
                    ),
+
                    SingleChildScrollView(
                      scrollDirection: Axis.horizontal,
                      child: Padding(
@@ -103,12 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                      fontSize: 16,
                                    ),
                                  ),
-                                 onPressed: () {
+                                 onPressed: (){},
+                                 /*onPressed: () {
                                    Navigator.push(context,
                                      MaterialPageRoute(
                                           builder: (context) =>
                                        loginPage() ));
-                                   }
+                                   }*/
                                    )
                                ),
                        ],
@@ -127,7 +163,8 @@ class _HomeScreenState extends State<HomeScreen> {
                    ),
                        itemCount: imgList.length,
                        itemBuilder: (_,i) {
-                       return productCard(imgList[i]);
+                       //return productCard(imgList[i]);
+                         return stateful(img: imgList[i],);
                      }
                    )
 ]          ),

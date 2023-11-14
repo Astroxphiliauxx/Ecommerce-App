@@ -1,30 +1,38 @@
+import 'package:ecommerce/screens/product_screen.dart';
+import 'package:ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
-import '../screens/product_screen.dart';
+
+class stateful extends StatefulWidget {
+  final String img;
 
 
-class productCard extends StatelessWidget {
-  String img;
-  productCard(this.img);
+  const stateful({ required this.img }) ;
+
+  @override
+  State<stateful> createState() => _statefulState();
+}
+
+class _statefulState extends State<stateful> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return  Column(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: Container(
-                    child: Stack(
-                       children: [
-                        InkWell(
-                           onTap: (){
-                           Navigator.push(context, MaterialPageRoute(builder: (context)=> productScreen(img)));
-                         },
-                           child: Image.asset("images/${img}.jpg",
-                                fit: BoxFit.cover,
-                                height: 240,
-                          ),
-                       )
-              ],
-            )
+              child: Stack(
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> productScreen(widget.img)));
+                    },
+                    child: Image.asset("images/${widget.img}.jpg",
+                      fit: BoxFit.cover,
+                      height: 240,
+                    ),
+                  )
+                ],
+              )
           ),
         ),
         SizedBox( height: 10,),
@@ -34,8 +42,8 @@ class productCard extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                Text(img,
+              children: [
+                Text(widget.img,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
