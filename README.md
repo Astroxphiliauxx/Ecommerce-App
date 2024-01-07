@@ -26,6 +26,7 @@ This an Ecommerce App from scratch. As it was a initial phase of my learning, th
    - Integration of google maps
    - Feedback section
    - Dark mode
+   - searching method
      
 ## Screenshots
 
