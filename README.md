@@ -29,7 +29,7 @@ This an Ecommerce App from scratch. As it was a initial phase of my learning, th
      
 ## Screenshots
 
-IMAGES
+
 <img src="https://github.com/Astroxphiliauxx/Ecommerce-App/blob/65e41bed3fb1648c002326af78198ac059697928/WhatsApp%20Image%202023-12-22%20at%2000.54.23_63206525.jpg" width="200" >
 <img src="https://github.com/Astroxphiliauxx/Ecommerce-App/blob/65e41bed3fb1648c002326af78198ac059697928/WhatsApp%20Image%202023-12-22%20at%2000.54.23_db295fbc.jpg" width="200" >
  <img src="https://github.com/Astroxphiliauxx/Ecommerce-App/blob/65e41bed3fb1648c002326af78198ac059697928/WhatsApp%20Image%202023-12-22%20at%2000.54.24_e863c44c.jpg" width="200" >
